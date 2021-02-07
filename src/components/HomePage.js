@@ -8,7 +8,6 @@ import SitePage from "./SitePage";
 
 const HomePage = () => {
   const [clientDetails, setClientDetails] = useState({});
-  console.log("Client Details", clientDetails)
   return (
     <div>
       <Grid container>
@@ -18,9 +17,7 @@ const HomePage = () => {
       <Grid xs={6} >
       <SitePage clientDetails={clientDetails}/>
       </Grid>
-      </Grid>
-      
-      
+      </Grid>    
     </div>
   );
 };

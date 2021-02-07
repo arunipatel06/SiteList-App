@@ -26,8 +26,7 @@ const SiteList = ({setClientDetails}) => {
     const fetchData = async () => {
       const fetchedSitesData = await fetchSiteList();
       setSiteDetails(fetchedSitesData);
-    };
-    
+    };  
     fetchData();
   }, []);
 
@@ -38,11 +37,9 @@ const SiteList = ({setClientDetails}) => {
 
   useEffect(() => {
    setClientDetails(currentSiteList[selectedIndex]);
-   console.log("Current", currentSiteList);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSiteList, selectedIndex]);
 
-   
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
   };
@@ -73,9 +70,7 @@ const SiteList = ({setClientDetails}) => {
                   }
                 />
                 <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="expand">
                     <ArrowForwardIosIcon />
-                  </IconButton>
                 </ListItemSecondaryAction>
               </ListItem>
             ))
