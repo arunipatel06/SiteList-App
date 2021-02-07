@@ -1,19 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 import { Grid } from '@material-ui/core';
 
 //components
 import SiteList from "./SiteList";
 import SitePage from "./SitePage";
 
+
 const HomePage = () => {
+  const [clientDetails, setClientDetails] = useState({});
+  console.log("Client Details", clientDetails)
   return (
     <div>
       <Grid container>
       <Grid xs={4}>
-      <SiteList /> 
+      <SiteList setClientDetails={setClientDetails}/> 
       </Grid>
-      <Grid xs={6}>
-      <SitePage />
+      <Grid xs={6} >
+      <SitePage clientDetails={clientDetails}/>
       </Grid>
       </Grid>
       
