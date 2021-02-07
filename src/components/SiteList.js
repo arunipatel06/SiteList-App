@@ -8,10 +8,11 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import IconButton from "@material-ui/core/IconButton";
+
 //icons
 import ImageIcon from "@material-ui/icons/Image";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import IconButton from "@material-ui/core/IconButton";
 
 const SiteList = ({ setSeriesIndex }) => {
   const classes = useStyles();
@@ -30,7 +31,6 @@ const SiteList = ({ setSeriesIndex }) => {
 
   useEffect(() => {
     setCurrentSiteList(siteDetails.slice((currentPage-1)*10,(currentPage*10)));
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [siteDetails,currentPage])
 
@@ -62,7 +62,7 @@ const SiteList = ({ setSeriesIndex }) => {
                   primary={site.title}
                   secondary={
                     <div>
-                      <div>{site.contacts.main.address.street}</div>
+                      <div>{site.address.city}, {site.address.country}</div>
                       <div>{site.contacts.main.phoneNumber}</div>
                     </div>
                   }
@@ -77,7 +77,6 @@ const SiteList = ({ setSeriesIndex }) => {
           : null}
       </List>
       <div><button onClick= {() => setCurrentPage(currentPage+1)}>Current Page: {currentPage}</button></div>
-      
     </div>
   );
 };
