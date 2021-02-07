@@ -1,8 +1,14 @@
-/* eslint-disable react/style-prop-object */
-import React from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import { Grid, Typography } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  CircularProgress,
+} from "@material-ui/core";
 import Profile from "../assets/Profile.jpg";
 
 //icons
@@ -11,7 +17,7 @@ import PhoneIcon from "@material-ui/icons/Phone";
 import EmailIcon from "@material-ui/icons/Email";
 import PinDropIcon from "@material-ui/icons/PinDrop";
 
-const clientDetails = {
+const clientDetails1 = {
   id: "h8ZUHSsZ_A",
   clientId: "HYm3QIXsbAQYL",
   title: "Electronics HQ",
@@ -57,29 +63,60 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     margin: "50px auto 20px",
-    width:"300px",
-
+    width: "300px",
   },
   icon: {
     fontSize: "30px",
     width: "10%",
-    marginRight:"20px",
+    marginRight: "20px",
   },
   iconAndText: {
     display: "flex",
     flexDirection: "row",
-    margin: "10px auto 10px"
+    margin: "10px auto 10px",
   },
   detailsText: {
     fontSize: "20px",
-    align:"left"
+    align: "left",
   },
 }));
 
-const SitePage = () => {
+const SitePage = ({ clientDetails }) => {
   const classes = useStyles();
-  return (
-    <div>
+  const [showDialog, setShowDialog] = useState(true);
+  const [siteData, setSiteData] = useState({});
+
+  console.log("Client site page", clientDetails);
+  console.log("length", Object.keys(siteData).length);
+
+  useEffect(() => {
+    if (
+      clientDetails !== undefined &&
+      Object.keys(clientDetails).length !== 0
+    ) {
+      setSiteData(clientDetails);
+      setShowDialog(false);
+    }
+  }, [clientDetails]);
+
+  const loadingComponent = (
+    <Dialog
+      onClose={() => {
+        setShowDialog(false);
+      }}
+      open={showDialog}
+      aria-labelledby="responsive-dialog-title"
+    >
+      <DialogTitle id="responsive-dialog-title">{"Loading... "}</DialogTitle>
+      <DialogContent>
+        <div style={{ textAlign: "center", margin: "10px auto" }}>
+          <CircularProgress />
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+  const site =
+    Object.keys(siteData).length !== 0 ? (
       <Paper elevation={1} className={classes.paper}>
         <Grid container>
           <Grid xs={12}>
@@ -96,36 +133,45 @@ const SitePage = () => {
               <div className={classes.iconAndText}>
                 <PersonIcon disableElevation={true} className={classes.icon} />
                 <div style={{ textAlign: "left" }}>
-                <Typography className={classes.detailsText} >
-                  {clientDetails.contacts.main.firstName}{" "}
-                  {clientDetails.contacts.main.lastName}  
-                </Typography>
-                <Typography variant="Subtitle"> {clientDetails.contacts.main.jobTitle}</Typography>
+                  <Typography className={classes.detailsText}>
+                    {siteData.contacts.main.firstName}{" "}
+                    {siteData.contacts.main.lastName}
+                  </Typography>
+                  <Typography variant="Subtitle">
+                    {" "}
+                    {siteData.contacts.main.jobTitle}
+                  </Typography>
                 </div>
               </div>
               <div className={classes.iconAndText}>
                 <PhoneIcon disableElevation={true} className={classes.icon} />
                 <Typography className={classes.detailsText}>
-                  {clientDetails.contacts.main.phoneNumber}
+                  {siteData.contacts.main.phoneNumber}
                 </Typography>
               </div>
               <div className={classes.iconAndText}>
                 <EmailIcon disableElevation={true} className={classes.icon} />
                 <Typography className={classes.detailsText}>
-                  {clientDetails.contacts.main.email}
+                  {siteData.contacts.main.email}
                 </Typography>
               </div>
               <div className={classes.iconAndText}>
                 <PinDropIcon disableElevation={true} className={classes.icon} />
                 <Typography className={classes.detailsText}>
-                  {clientDetails.contacts.main.address.street}
+                  {siteData.contacts.main.address.street}
                 </Typography>
               </div>
             </div>
           </Grid>
         </Grid>
       </Paper>
-    </div>
+    ) : null;
+
+  return (
+    <Fragment>
+      {loadingComponent}
+      {site}
+    </Fragment>
   );
 };
 export default SitePage;
