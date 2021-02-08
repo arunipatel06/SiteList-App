@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   parent: {
     display: "flex",
     flexDirection: "column",
-    margin: "50px auto 20px",
+    margin: "30px auto 20px",
     width: "300px",
   },
   icon: {
