@@ -9,7 +9,9 @@ import {
   DialogContent,
   CircularProgress,
 } from "@material-ui/core";
+import { useLocation } from "react-router-dom";
 import Profile from "../assets/Profile.jpg";
+import SitePageNavbar from "./Navbar"
 
 //icons
 import PersonIcon from "@material-ui/icons/Person";
@@ -46,6 +48,8 @@ const useStyles = makeStyles((theme) => ({
 
 const SitePage = ({ clientDetails }) => {
   const classes = useStyles();
+  const {state} = useLocation();
+
   const [showDialog, setShowDialog] = useState(true);
   const [siteData, setSiteData] = useState({});
 
@@ -57,7 +61,15 @@ const SitePage = ({ clientDetails }) => {
       setSiteData(clientDetails);
       setShowDialog(false);
     }
-  }, [clientDetails]);
+    if(
+        state !== undefined &&
+        Object.keys(state).length !== 0
+      ) {
+        console.log("State", state);
+        setSiteData(state.state);
+        setShowDialog(false);
+      }
+  }, [clientDetails,state]);
 
   const loadingComponent = (
     <Dialog
@@ -129,6 +141,7 @@ const SitePage = ({ clientDetails }) => {
 
   return (
     <Fragment>
+      <SitePageNavbar />
       {loadingComponent}
       {site}
     </Fragment>

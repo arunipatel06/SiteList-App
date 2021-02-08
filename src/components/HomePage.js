@@ -1,51 +1,75 @@
-import React, {useState} from "react";
-import { Grid } from '@material-ui/core';
+import React, { Fragment, useState } from "react";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 //components
 import SiteList from "./SiteList";
 import SitePage from "./SitePage";
-import Navbar from "./Navbar"
+import Navbar from "./Navbar";
 
 const useStyles = makeStyles((theme) => ({
   navbar: {
     height: "50px",
-    width:"100%",
+    width: "100%",
     color: "black",
     position: "fixed",
-    alignItems:"center"
+    alignItems: "center",
   },
-  siteList:{
-    marginTop:"40px"
+  siteList: {
+    marginTop: "40px",
   },
-  sitePage:{
-    paddingTop:"60px"
-  }
+  sitePage: {
+    paddingTop: "60px",
+  },
 }));
 
 const HomePage = () => {
   const classes = useStyles();
+  const matches = useMediaQuery("(min-width:1280px)");
 
   const [clientDetails, setClientDetails] = useState({});
-  return (
+  const desktopHome = (
     <div>
       <Grid container>
         <Grid xs={12}>
           <div className={classes.navbar}>
-          <Navbar />
+            <Navbar />
           </div>
         </Grid>
-        <Grid xs={4} >
+        <Grid md={4} xs={12}>
           <div className={classes.siteList}>
-          <SiteList setClientDetails={setClientDetails} />
+            <SiteList setClientDetails={setClientDetails} />
           </div>
-          
         </Grid>
-        <Grid xs={6}>
-          <div className={classes.sitePage}><SitePage clientDetails={clientDetails} /></div>       
+        <Grid md={6} xs={12}>
+          <div className={classes.sitePage}>
+            <SitePage clientDetails={clientDetails} />
+          </div>
         </Grid>
       </Grid>
     </div>
+  );
+  const mobileHome = (
+    <div>
+      <Grid container>
+        <Grid xs={12}>
+          <div className={classes.navbar}>
+            <Navbar />
+          </div>
+        </Grid>
+        <Grid md={4} xs={12}>
+          <div className={classes.siteList}>
+            <SiteList setClientDetails={setClientDetails} />
+          </div>
+        </Grid>
+      </Grid>
+    </div>
+  );
+  return (
+    <Fragment>
+      <div>{matches ? desktopHome : mobileHome}</div>
+    </Fragment>
   );
 };
 

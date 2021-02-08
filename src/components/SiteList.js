@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import fetchSiteList from "../dataSources/siteList";
 import { makeStyles } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useHistory } from "react-router-dom";
 
 //list
 import List from "@material-ui/core/List";
@@ -12,16 +14,21 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 //icons
 import ImageIcon from "@material-ui/icons/Image";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import { NavigateBefore } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    maxWidth: 300,
+    maxWidth: 450,
     alignItems: "left",
     backgroundColor: theme.palette.background.paper,
-    position: 'fixed',
-    overflow: 'auto',
+    position: "relative",
+    overflow: "auto",
     maxHeight: 700,
+    [theme.breakpoints.up("md")]: {
+      maxWidth: 300,
+      maxHeight: 700,
+    },
   },
   list: {
     "&:hover": { color: "black", backgroundColor: "#b2d2f7" },
@@ -34,9 +41,10 @@ const useStyles = makeStyles((theme) => ({
   arrowIcon: {
     marginLeft: "8px",
   },
-  button:{
-    fontSize:"15px",
-    fontStyle:"bold",
+  button: {
+    fontSize: "15px",
+    fontStyle: "bold",
+    textAlign: "center",
     margin: "auto",
     borderRadius: "25px",
     padding: "7px 45px",
@@ -45,13 +53,16 @@ const useStyles = makeStyles((theme) => ({
     color: "#5e5f63",
     backgroundColor: "#dbdbdb",
     border: "none",
-    outline:"none",
-  }
+    outline: "none",
+  },
 }));
 
 const SiteList = ({ setClientDetails }) => {
   const classes = useStyles();
+  const matches = useMediaQuery("(min-width:1280px)");
+  const history = useHistory();
 
+  console.log("Matchesss", matches)
   const [siteDetails, setSiteDetails] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSiteList, setCurrentSiteList] = useState([]);
@@ -79,9 +90,16 @@ const SiteList = ({ setClientDetails }) => {
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
+    if (
+      currentSiteList[index] !== undefined &&
+      Object.keys(currentSiteList[index]) !== 0 &&
+      !matches
+    ) {
+      history.push(`/site/${currentSiteList[index].id}`, { state: currentSiteList[index] });
+    }
   };
 
-  return (
+  const desktopList = (
     <div className={classes.root}>
       <List>
         {currentSiteList.length !== 0
@@ -115,8 +133,9 @@ const SiteList = ({ setClientDetails }) => {
             ))
           : null}
       </List>
+      <div style={{ justifyContent: "center" }}>
         <button
-        className={classes.button}
+          className={classes.button}
           onClick={() => {
             setCurrentPage(currentPage + 1);
             setSelectedIndex(0);
@@ -125,6 +144,13 @@ const SiteList = ({ setClientDetails }) => {
           Next Page &gt;&gt;
         </button>
       </div>
+    </div>
+  );
+
+  return (
+    <Fragment>
+      <div>{desktopList}</div>
+    </Fragment>
   );
 };
 
