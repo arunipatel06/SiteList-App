@@ -14,7 +14,6 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 //icons
 import ImageIcon from "@material-ui/icons/Image";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import { NavigateBefore } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,12 +41,11 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "8px",
   },
   button: {
-    fontSize: "15px",
-    fontStyle: "bold",
-    textAlign: "center",
-    margin: "auto",
+    fontSize: "18px",
+    fontStyle: 900,
+    float: "right",
     borderRadius: "25px",
-    padding: "7px 45px",
+    padding: "7px 40px",
     textTransform: "none",
     "&:hover": { color: "white", backgroundColor: "#b2d2f7" },
     color: "#5e5f63",
@@ -62,7 +60,6 @@ const SiteList = ({ setClientDetails }) => {
   const matches = useMediaQuery("(min-width:1280px)");
   const history = useHistory();
 
-  console.log("Matchesss", matches)
   const [siteDetails, setSiteDetails] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSiteList, setCurrentSiteList] = useState([]);
@@ -95,7 +92,9 @@ const SiteList = ({ setClientDetails }) => {
       Object.keys(currentSiteList[index]) !== 0 &&
       !matches
     ) {
-      history.push(`/site/${currentSiteList[index].id}`, { state: currentSiteList[index] });
+      history.push(`/site/${currentSiteList[index].id}`, {
+        state: currentSiteList[index],
+      });
     }
   };
 

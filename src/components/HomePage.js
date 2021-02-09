@@ -14,7 +14,15 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     color: "black",
     position: "fixed",
+    zIndex: 5,
     alignItems: "center",
+  },
+  mobileNavbar: {
+    height: "50px",
+    width: "100%",
+    color: "black",
+    zIndex: 5,
+    position: "fixed",
   },
   siteList: {
     marginTop: "40px",
@@ -54,7 +62,7 @@ const HomePage = () => {
     <div>
       <Grid container>
         <Grid xs={12}>
-          <div className={classes.navbar}>
+          <div className={classes.mobileNavbar}>
             <Navbar />
           </div>
         </Grid>
