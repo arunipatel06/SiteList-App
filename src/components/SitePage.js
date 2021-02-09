@@ -13,6 +13,7 @@ import {
 import { useLocation, useHistory } from "react-router-dom";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Profile from "../assets/Profile.jpg";
+import Navbar from "./Navbar";
 
 //list
 import List from "@material-ui/core/List";
@@ -80,7 +81,6 @@ const SitePage = ({ clientDetails }) => {
       setShowDialog(false);
     }
     if (state !== undefined && Object.keys(state).length !== 0) {
-      console.log("State", state);
       setSiteData(state.state);
       setShowDialog(false);
     }
@@ -158,9 +158,17 @@ const SitePage = ({ clientDetails }) => {
     Object.keys(siteData).length !== 0 ? (
       <Grid container>
         <Grid xs={12}>
+          <div style={{ borderBottom: "1px solid black" }}>
+            <Navbar />
+          </div>
+
           <List className={classes.mobileList}>
             <ListItem>
-              <IconButton edge="start" className={classes.mobileBackIcon} onClick={() => history.goBack()}>
+              <IconButton
+                edge="start"
+                className={classes.mobileBackIcon}
+                onClick={() => history.goBack()}
+              >
                 <ArrowBackIosIcon />
               </IconButton>
               <ListItemIcon>
