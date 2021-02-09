@@ -1,5 +1,5 @@
 ## React-App
-#### Single page App using Material UI style components.
+#### This Multipage React App is build using React Router and Material UI style components.
 
 #### Steps to run React application on local machine
 
