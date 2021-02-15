@@ -15,8 +15,8 @@ class App extends Component {
         <div style={{ width: "100%", overflowX: "hidden" }}>
           <BrowserRouter>
             <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route path="/site/:id" component={SitePage} />
+              <Route exact path="" component={HomePage} />
+              <Route exact path="/site/:id" component={SitePage} />
             </Switch>
           </BrowserRouter>
         </div>
