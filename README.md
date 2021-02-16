@@ -1,5 +1,6 @@
 ## React-App
 #### This Multipage React App is build using React Router and Material UI style components.
+#### The project is deployed on gh pages and can be viewed here https://arunipatel06.github.io/SiteList-App/
 
 #### Steps to run React application on local machine
 
