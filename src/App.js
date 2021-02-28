@@ -1,10 +1,8 @@
 /* eslint-disable no-useless-constructor */
 import { Component } from "react";
-import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import HomePage from "./components/HomePage";
-import SitePage from "./components/SitePage";
-
+import HomePage from "./components/Home/HomePage";
+import MobileSitePage from "./components/Site/MobileSitePage";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,8 +13,8 @@ class App extends Component {
         <div style={{ width: "100%", overflowX: "hidden" }}>
           <BrowserRouter>
             <Switch>
-              <Route exact path="" component={HomePage} />
-              <Route exact path="/site/:id" component={SitePage} />
+              <Route exact path="/" component={HomePage} />
+              <Route exact path="/site/:id" component={MobileSitePage} />
             </Switch>
           </BrowserRouter>
         </div>
