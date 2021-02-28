@@ -1,36 +1,10 @@
 import React, { Fragment, useState } from "react";
 import { Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { useStyles } from "./HomeJss";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-
-//components
-import SiteList from "./SiteList";
-import SitePage from "./SitePage";
-import Navbar from "./Navbar";
-
-const useStyles = makeStyles((theme) => ({
-  navbar: {
-    height: "50px",
-    width: "100%",
-    color: "black",
-    position: "fixed",
-    zIndex: 5,
-    alignItems: "center",
-  },
-  mobileNavbar: {
-    height: "50px",
-    width: "100%",
-    color: "black",
-    zIndex: 5,
-    position: "fixed",
-  },
-  siteList: {
-    marginTop: "40px",
-  },
-  sitePage: {
-    paddingTop: "60px",
-  },
-}));
+import SiteList from "../List/SiteList";
+import SitePage from "../Site/SitePage";
+import Navbar from "../Nav/Navbar";
 
 const HomePage = () => {
   const classes = useStyles();

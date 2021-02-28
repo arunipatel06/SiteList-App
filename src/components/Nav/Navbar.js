@@ -84,7 +84,6 @@ const NewNavbar = (props) => {
           <AccountCircleIcon edge="end" className={classes.accountIcon} />
         </IconButton>
       </IconButton>
-
       <div
         style={{
           display: mobileOverlay ? "block" : "none",
