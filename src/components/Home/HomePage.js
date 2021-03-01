@@ -40,7 +40,7 @@ const HomePage = () => {
             <Navbar />
           </div>
         </Grid>
-        <Grid md={4} xs={12}>
+        <Grid xs={12}>
           <div className={classes.siteList}>
             <SiteList setClientDetails={setClientDetails} />
           </div>

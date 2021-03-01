@@ -4,7 +4,6 @@ import { useStyles } from "./SiteListJss";
 import { Link } from "react-router-dom";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import allSiteLists from "../../api/siteLists";
-
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -48,7 +47,7 @@ const SiteList = ({ setClientDetails }) => {
     setSelectedIndex(index);
   };
 
-  const mobileView = (
+  const desktopView = (
     <div className={classes.root}>
       <List>
         {currentPageLists.length !== 0 &&
@@ -73,19 +72,10 @@ const SiteList = ({ setClientDetails }) => {
                   </div>
                 }
               />
-              <Link
-                to={{
-                  pathname: `/site/${currentPageLists[index].id}`,
-                  state: currentPageLists[index],
-                }}
-              >
-                {/* <button>Click Me </button> */}
-                <ListItemSecondaryAction>
-                  <ArrowForwardIosIcon />
-                </ListItemSecondaryAction>
-              </Link>
+              <ListItemSecondaryAction>
+                <ArrowForwardIosIcon />
+              </ListItemSecondaryAction>
             </ListItem>
-            // </Link>
           ))}
       </List>
       <button
@@ -99,7 +89,57 @@ const SiteList = ({ setClientDetails }) => {
     </div>
   );
 
-  return <Fragment>{mobileView}</Fragment>;
+  const mobileView = (
+    <div className={classes.root}>
+      <List>
+        {currentPageLists.length !== 0 &&
+          currentPageLists.map((site, index) => (
+            <Link
+              to={{
+                pathname: `/site/${currentPageLists[index].id}`,
+                state: currentPageLists[index],
+              }}
+            >
+              <ListItem
+                className={
+                  selectedIndex === index ? classes.itemSelected : classes.list
+                }
+                button
+                selected={selectedIndex === index}
+                onClick={(event) => handleListItemClick(event, index)}
+              >
+                <ListItemIcon>
+                  <ImageIcon />
+                </ListItemIcon>
+                <ListItemText
+                  primary={site.title}
+                  secondary={
+                    <div>
+                      {site.address.city}, {site.address.country}
+                      {site.contacts.main.phoneNumber}
+                    </div>
+                  }
+                />
+
+                <ListItemSecondaryAction>
+                  <ArrowForwardIosIcon />
+                </ListItemSecondaryAction>
+              </ListItem>
+            </Link>
+          ))}
+      </List>
+      <button
+        className={classes.button}
+        onClick={() => {
+          clickNextPage();
+        }}
+      >
+        Next Page &gt;&gt;
+      </button>
+    </div>
+  );
+
+  return <Fragment>{matches ? desktopView : mobileView}</Fragment>;
 };
 
 export default SiteList;

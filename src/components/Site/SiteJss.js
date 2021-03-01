@@ -31,4 +31,8 @@ export const useStyles = makeStyles((theme) => ({
     padding: "0px 15px 0px",
     color: "white",
   },
+  image: {
+    width: "100%",
+    height: "100%",
+  },
 }));
