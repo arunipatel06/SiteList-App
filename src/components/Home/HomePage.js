@@ -9,8 +9,6 @@ import Navbar from "../Nav/Navbar";
 const HomePage = () => {
   const classes = useStyles();
   const matches = useMediaQuery("(min-width:1280px)");
-
-  const [clientDetails, setClientDetails] = useState({});
   const desktopHome = (
     <div>
       <Grid container>
@@ -21,12 +19,12 @@ const HomePage = () => {
         </Grid>
         <Grid md={4} xs={12}>
           <div className={classes.siteList}>
-            <SiteList setClientDetails={setClientDetails} />
+            <SiteList />
           </div>
         </Grid>
         <Grid md={6} xs={12}>
           <div className={classes.sitePage}>
-            <SitePage clientDetails={clientDetails} />
+            <SitePage />
           </div>
         </Grid>
       </Grid>
@@ -42,7 +40,7 @@ const HomePage = () => {
         </Grid>
         <Grid xs={12}>
           <div className={classes.siteList}>
-            <SiteList setClientDetails={setClientDetails} />
+            <SiteList />
           </div>
         </Grid>
       </Grid>
