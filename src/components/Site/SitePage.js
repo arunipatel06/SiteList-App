@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment, useContext } from "react";
 import {
   Grid,
   Paper,
@@ -16,21 +16,22 @@ import EmailIcon from "@material-ui/icons/Email";
 import PinDropIcon from "@material-ui/icons/PinDrop";
 import Profile from "./Profile.jpg";
 import { useStyles } from "./SiteJss";
+import { SiteListContext } from "../../context/SiteListContext";
 
-const SitePage = ({ clientDetails }) => {
+const SitePage = () => {
   const classes = useStyles();
+  const { client } = useContext(SiteListContext);
+
+  const [clientData, setClientData] = client;
   const [showDialog, setShowDialog] = useState(true);
   const [site, setSiteData] = useState();
 
   useEffect(() => {
-    if (
-      clientDetails !== undefined &&
-      Object.keys(clientDetails).length !== 0
-    ) {
-      setSiteData(clientDetails);
+    if (clientData !== undefined && Object.keys(clientData).length !== 0) {
+      setSiteData(clientData);
       setShowDialog(false);
     }
-  }, [clientDetails]);
+  }, [clientData]);
 
   const loadingComponent = (
     <Dialog

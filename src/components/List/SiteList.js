@@ -1,23 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment, useContext } from "react";
 import { useStyles } from "./SiteListJss";
 import { Link } from "react-router-dom";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import allSiteLists from "../../api/siteLists";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-
 import ImageIcon from "@material-ui/icons/Image";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import { SiteListContext } from "../../context/SiteListContext";
 
-const SiteList = ({ setClientDetails }) => {
+const SiteList = () => {
   const classes = useStyles();
   const matches = useMediaQuery("(min-width:1280px)");
 
-  const [siteDetails, setSiteDetails] = useState([]);
+  const { sites, client } = useContext(SiteListContext);
+
+  const [siteLists, setSiteLists] = sites;
+  const [clientData, setClientData] = client;
   const [currentPage, setCurrentPage] = useState(1);
   const [currentPageLists, setCurrentPageLists] = useState([]);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -26,21 +28,14 @@ const SiteList = ({ setClientDetails }) => {
     setCurrentPage(currentPage + 1);
     setSelectedIndex(0);
   };
-
-  useEffect(() => {
-    allSiteLists().then((response) => {
-      setSiteDetails(response);
-    });
-  }, []);
-
   useEffect(() => {
     setCurrentPageLists(
-      siteDetails.slice((currentPage - 1) * 10, currentPage * 10)
+      siteLists.slice((currentPage - 1) * 10, currentPage * 10)
     );
-  }, [siteDetails, currentPage]);
+  }, [siteLists, currentPage]);
 
   useEffect(() => {
-    setClientDetails(currentPageLists[selectedIndex]);
+    setClientData(currentPageLists[selectedIndex]);
   }, [currentPageLists, selectedIndex]);
 
   const handleListItemClick = (event, index) => {
