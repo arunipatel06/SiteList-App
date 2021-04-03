@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/SiteList-App/static/css/main.2ae47eeb.chunk.css",
-    "main.js": "/SiteList-App/static/js/main.588bad65.chunk.js",
-    "main.js.map": "/SiteList-App/static/js/main.588bad65.chunk.js.map",
+    "main.js": "/SiteList-App/static/js/main.8b409487.chunk.js",
+    "main.js.map": "/SiteList-App/static/js/main.8b409487.chunk.js.map",
     "runtime-main.js": "/SiteList-App/static/js/runtime-main.5333b9a8.js",
     "runtime-main.js.map": "/SiteList-App/static/js/runtime-main.5333b9a8.js.map",
-    "static/js/2.220655be.chunk.js": "/SiteList-App/static/js/2.220655be.chunk.js",
-    "static/js/2.220655be.chunk.js.map": "/SiteList-App/static/js/2.220655be.chunk.js.map",
+    "static/js/2.5dc9a714.chunk.js": "/SiteList-App/static/js/2.5dc9a714.chunk.js",
+    "static/js/2.5dc9a714.chunk.js.map": "/SiteList-App/static/js/2.5dc9a714.chunk.js.map",
     "static/js/3.651e1ad4.chunk.js": "/SiteList-App/static/js/3.651e1ad4.chunk.js",
     "static/js/3.651e1ad4.chunk.js.map": "/SiteList-App/static/js/3.651e1ad4.chunk.js.map",
     "index.html": "/SiteList-App/index.html",
     "static/css/main.2ae47eeb.chunk.css.map": "/SiteList-App/static/css/main.2ae47eeb.chunk.css.map",
-    "static/js/2.220655be.chunk.js.LICENSE.txt": "/SiteList-App/static/js/2.220655be.chunk.js.LICENSE.txt",
+    "static/js/2.5dc9a714.chunk.js.LICENSE.txt": "/SiteList-App/static/js/2.5dc9a714.chunk.js.LICENSE.txt",
     "static/media/Profile.f6a93b73.jpg": "/SiteList-App/static/media/Profile.f6a93b73.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.5333b9a8.js",
-    "static/js/2.220655be.chunk.js",
+    "static/js/2.5dc9a714.chunk.js",
     "static/css/main.2ae47eeb.chunk.css",
-    "static/js/main.588bad65.chunk.js"
+    "static/js/main.8b409487.chunk.js"
   ]
 }
