@@ -1,16 +1,26 @@
-// import React, { useState, createContext } from "react";
-// import fetchSiteList from "../api/siteLists";
+import React, { useState, createContext, useEffect } from "react";
+import fetchSiteList from "../api/siteLists";
+import allSiteLists from "../api/siteLists";
+export const SiteListContext = createContext();
 
-// export const SiteListContext = createContext();
+export const SiteListProvider = (props) => {
+  const [siteDetails, setSiteDetails] = useState([]);
+  const [clientDetails, setClientDetails] = useState({});
 
-// export const SiteListProvider = (props) => {
-//   const [allSiteList, setAllSiteLists] = useState([]);
+  useEffect(() => {
+    allSiteLists().then((response) => {
+      setSiteDetails(response);
+    });
+  }, []);
 
-//   const fetchSites = () => {
-//     fetchSiteList().then((lists) => {
-//       setAllSiteLists(lists);
-//     });
-//   };
-//   fetchSites();
-//   return <SiteListContext.Provider>{props.children}</SiteListContext.Provider>;
-// };
+  return (
+    <SiteListContext.Provider
+      value={{
+        sites: [siteDetails, setSiteDetails],
+        client: [clientDetails, setClientDetails],
+      }}
+    >
+      {props.children}
+    </SiteListContext.Provider>
+  );
+};
